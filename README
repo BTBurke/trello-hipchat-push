@@ -1,0 +1,6 @@
+A bot that monitors actions on Trello boards and pushes notifications to Hipchat in a specified room.
+
+* The Trello bot will subscribe to all cards on a particular Trello board
+* Any action to creates a notification in Trello will be pushed to the Hipchat room (TODO:  Allow custom notifications)
+* A specially formatted archived card tells the bot which room to push notifications to for a particular board
+* The Trello bot can also perform helper actions.  Currently the bot will look for text formatted links to a shared drive and reformat them into a clickable URL
