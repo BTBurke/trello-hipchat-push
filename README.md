@@ -13,3 +13,10 @@ The best way to use this is to create an account on Trello for your bot, then ge
 * The bot checks this card every time to see where notifications should be sent.  To turn off notifications, you can delete this card, or remove the bot from the board.
 
 The bot is also capable of some custom actions.  See the TrelloAction class for an example of monitoring for text links in a card comment that look like local file paths and replacing it with a file:// link.
+
+The following actions create notifications in Hipchat:
+# Moving a card between lists (Foo moved card *Baz* from *To Do* to *Doing*)
+# Creating a card (Foo created card *Baz* and added it to *To Do*)
+# Commenting on a card (Foo commented on card *Baz*)
+
+It's relatively easy to add additional notifications if you know what to look for in the Trello API.
