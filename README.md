@@ -15,8 +15,11 @@ The best way to use this is to create an account on Trello for your bot, then ge
 The bot is also capable of some custom actions.  See the TrelloAction class for an example of monitoring for text links in a card comment that look like local file paths and replacing it with a file:// link.
 
 The following actions create notifications in Hipchat:
-1. Moving a card between lists (Foo moved card *Baz* from *To Do* to *Doing*)
-2. Creating a card (Foo created card *Baz* and added it to *To Do*)
-3. Commenting on a card (Foo commented on card *Baz*)
+
+1. Moving a card between lists (Foo moved card **Baz** from **To Do** to **Doing**)
+
+2. Creating a card (Foo created card **Baz** and added it to **To Do**)
+
+3. Commenting on a card (Foo commented on card **Baz**)
 
 It's relatively easy to add additional notifications if you know what to look for in the Trello API.
