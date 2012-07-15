@@ -1,3 +1,4 @@
-.yaml
-.pyc
-.txt
+*.yaml
+*.pyc
+*.txt
+src/run.sh

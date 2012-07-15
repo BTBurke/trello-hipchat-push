@@ -27,7 +27,6 @@ class HipchatConnection(object):
         params = params or {}
         params.update({'format': 'json', 'auth_token': self.token})
         url += '?' + urlencode(params)
-        print url
         response = self.session.request(method, url, data=body)
         if response.status_code != 200:
             # TODO: confirm that Hipchat never returns a 201, for example, when

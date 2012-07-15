@@ -1,6 +1,7 @@
+#!/usr/bin/env python
+
 from trellobot import TrelloRequest, TrelloAction
 from hipbot import HipchatRequest
-from apscheduler.scheduler import Scheduler
 
 def mainloop():
 	req = TrelloRequest()
