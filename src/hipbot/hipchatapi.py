@@ -1,5 +1,6 @@
 from urllib import urlencode
 #from yaml import load, dump
+from hipchataction import do_hipchat_actions
 import json
 import isodate
 import requests
@@ -50,6 +51,7 @@ class HipchatRequest(object):
 
         self.conn = HipchatConnection()
         self.get_room_list()
+        self.get_recent_messages()
 
     def get_room_list(self):
         _path = '/rooms/list'
@@ -62,15 +64,43 @@ class HipchatRequest(object):
     def send_message(self, msg):
         _path = '/rooms/message'
         _params = {}
+        from_who = msg['from'] or 'Notify'
+        color = msg['color'] or 'yellow'
 
-        desired_room = msg['room'].split(':')[1]
-        if desired_room in self.roomlist.keys():
-            _params.update({'room_id': self.roomlist[desired_room]})
-            _params.update({'from': 'Notify'})
+        if 'room' in msg.keys():
+            desired_room = msg['room'].split(':')[1]
+            if desired_room in self.roomlist.keys():
+                room_id = self.roomlist[desired_room]
+        elif 'room_id' in msg.keys():
+            room_id = msg['room_id']
+        else:
+            room_id = None  
+
+        if room_id:
+            _params.update({'room_id': room_id})
+            _params.update({'from': from_who})
             _params.update({'message_format': msg['format']})
-            _params.update({'color': 'yellow'})
+            _params.update({'color': color})
             _params.update({'message': msg['text']}) 
             self.conn.post(_path, _params)
+
+    def get_recent_messages(self):
+        _path = '/rooms/history'
+        _params = {}
+
+        for room, room_id in self.roomlist.items():
+            _params.update({'room_id': room_id})
+            _params.update({'date': 'recent'})
+            _params.update({'format': 'json'})
+            msgs = self.conn.get(_path, _params)
+            msg_tosend = do_hipchat_actions(msgs, room_id)
+            if msg_tosend:
+                print 'msgs: ' + str(len(msg_tosend))
+                for msg in msg_tosend:
+                    self.send_message(msg)
+
+
+
 
 
 if __name__ == '__main__':

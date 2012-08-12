@@ -60,7 +60,7 @@ class TrelloAction(object):
 			what = ' commented on card <b>' + data['data']['card']['name'] + '</b>'
 		
 			# for comments, see if we can linkify it
-			self.linkify(data['data']['text'], data['data']['card']['id'])
+			#self.linkify(data['data']['text'], data['data']['card']['id'])
 		
 			ret_text = who + what
 
