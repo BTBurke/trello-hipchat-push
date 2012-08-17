@@ -128,8 +128,8 @@ class TrelloRequest(object):
 		if len(update_data) > 0:
 			self.state.update({str(boardID): str(update_data[0]['date'])})
 			#print self.state
-
-		
+		print self.state
+		print update_data
 		return update_data
 
 

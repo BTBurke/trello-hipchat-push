@@ -64,8 +64,15 @@ class HipchatRequest(object):
     def send_message(self, msg):
         _path = '/rooms/message'
         _params = {}
-        from_who = msg['from'] or 'Notify'
-        color = msg['color'] or 'yellow'
+        
+        from_who = msg['from']
+        color = msg['color']
+        room_id = None
+        #if 'from' in msg.keys():
+        #    from_who = msg['from']
+        #else:
+        #    from_who = 'Trello'
+        #color = msg['color'] or 'yellow'
 
         if 'room' in msg.keys():
             desired_room = msg['room'].split(':')[1]

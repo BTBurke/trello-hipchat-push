@@ -65,7 +65,7 @@ class TrelloAction(object):
 			ret_text = who + what
 
 		if boardID in self.hipchat_rooms.keys() and ret_text:
-			return {'room': self.hipchat_rooms[boardID], 'text': ret_text, 'format': 'html'}
+			return {'room': self.hipchat_rooms[boardID], 'text': ret_text, 'format': 'html', 'from': 'Trello', 'color': 'yellow'}
 
 	def linkify(self, text, cardId):
 		
